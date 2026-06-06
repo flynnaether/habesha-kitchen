@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Habesha Kitchen | Authentic Ethiopian Restaurant</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Georgia', serif; background: #0a0a0a; color: #ffffff; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; width: 100%; background: rgba(0,0,0,0.9); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; z-index: 999; border-bottom: 2px solid #c8972b; }
+    .logo { font-size: 22px; color: #c8972b; font-weight: bold; letter-spacing: 2px; }
+    .nav-links { display: flex; gap: 15px; }
+    .nav-links a { color: #ffffff; text-decoration: none; font-size: 13px; letter-spacing: 1px; }
+    .nav-links a:hover { color: #c8972b; }
+
+    /* HERO */
+    .hero { height: 100vh; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1567529692333-de9fd6772897?w=1200') center/cover; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; }
+    .hero h1 { font-size: 42px; color: #c8972b; letter-spacing: 4px; text-transform: uppercase; }
+    .hero p { font-size: 16px; color: #dddddd; margin-top: 15px; letter-spacing: 2px; }
+    .hero-btn { margin-top: 30px; padding: 15px 40px; background: #c8972b; color: #000000; font-size: 15px; font-weight: bold; border: none; border-radius: 30px; cursor: pointer; letter-spacing: 2px; text-decoration: none; }
+    .hero-btn:hover { background: #ffffff; }
+
+    /* ABOUT */
+    .about { padding: 80px 20px; text-align: center; background: #111111; }
+    .about h2 { font-size: 32px; color: #c8972b; margin-bottom: 20px; letter-spacing: 3px; }
+    .about p { color: #cccccc; font-size: 15px; line-height: 1.9; max-width: 650px; margin: auto; }
+    .divider { width: 60px; height: 3px; background: #c8972b; margin: 20px auto; }
+
+    /* MENU */
+    .menu { padding: 80px 20px; background: #0a0a0a; }
+    .menu h2 { text-align: center; font-size: 32px; color: #c8972b; margin-bottom: 10px; letter-spacing: 3px; }
+    .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 40px; max-width: 900px; margin-left: auto; margin-right: auto; }
+    .menu-card { background: #1a1a1a; border-radius: 15px; overflow: hidden; border: 1px solid #333333; transition: transform 0.3s; }
+    .menu-card:hover { transform: translateY(-5px); }
+    .menu-card img { width: 100%; height: 180px; object-fit: cover; }
+    .menu-info { padding: 20px; }
+    .menu-info h3 { color: #c8972b; font-size: 18px; }
+    .menu-info p { color: #aaaaaa; font-size: 13px; margin-top: 8px; line-height: 1.6; }
+    .menu-info .price { color: #ffffff; font-size: 16px; font-weight: bold; margin-top: 10px; }
+
+    /* FEATURES */
+    .features { padding: 80px 20px; background: #111111; text-align: center; }
+    .features h2 { font-size: 32px; color: #c8972b; margin-bottom: 40px; letter-spacing: 3px; }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 800px; margin: auto; }
+    .feature-item { padding: 30px 20px; background: #1a1a1a; border-radius: 15px; border-top: 3px solid #c8972b; }
+    .feature-item .icon { font-size: 40px; margin-bottom: 15px; }
+    .feature-item h3 { color: #ffffff; font-size: 16px; margin-bottom: 10px; }
+    .feature-item p { color: #aaaaaa; font-size: 13px; line-height: 1.6; }
+
+    /* TESTIMONIALS */
+    .testimonials { padding: 80px 20px; background: #0a0a0a; text-align: center; }
+    .testimonials h2 { font-size: 32px; color: #c8972b; margin-bottom: 40px; letter-spacing: 3px; }
+    .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; max-width: 900px; margin: auto; }
+    .testimonial-card { background: #1a1a1a; padding: 25px; border-radius: 15px; border-left: 4px solid #c8972b; }
+    .testimonial-card p { color: #cccccc; font-size: 14px; line-height: 1.8; font-style: italic; }
+    .testimonial-card h4 { color: #c8972b; margin-top: 15px; font-size: 14px; }
+    .stars { color: #c8972b; font-size: 16px; margin-bottom: 10px; }
+
+    /* RESERVATION */
+    .reservation { padding: 80px 20px; background: #111111; text-align: center; }
+    .reservation h2 { font-size: 32px; color: #c8972b; margin-bottom: 10px; letter-spacing: 3px; }
+    .reservation p { color: #cccccc; margin-bottom: 30px; }
+    .form-group { margin-bottom: 15px; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .form-group input { width: 100%; padding: 15px; background: #1a1a1a; border: 1px solid #333333; border-radius: 8px; color: #ffffff; font-size: 14px; }
+    .form-group input:focus { outline: none; border-color: #c8972b; }
+    .submit-btn { padding: 15px 50px; background: #c8972b; color: #000000; font-size: 15px; font-weight: bold; border: none; border-radius: 30px; cursor: pointer; letter-spacing: 2px; margin-top: 10px; }
+    .submit-btn:hover { background: #ffffff; }
+
+    /* CONTACT */
+    .contact { padding: 60px 20px; background: #0a0a0a; text-align: center; }
+    .contact h2 { font-size: 32px; color: #c8972b; margin-bottom: 30px; letter-spacing: 3px; }
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px; max-width: 700px; margin: auto; }
+    .contact-item .icon { font-size: 30px; margin-bottom: 10px; }
+    .contact-item h3 { color: #c8972b; font-size: 14px; margin-bottom: 8px; }
+    .contact-item p { color: #aaaaaa; font-size: 13px; }
+
+    /* FOOTER */
+    footer { background: #000000; padding: 25px; text-align: center; border-top: 2px solid #c8972b; }
+    footer p { color: #555555; font-size: 12px; letter-spacing: 1px; }
+    footer span { color: #c8972b; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">🍛 HABESHA KITCHEN</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#menu">Menu</a>
+    <a href="#reservation">Reserve</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Habesha Kitchen</h1>
+  <p>✨ Authentic Ethiopian Flavors Since 2010 ✨</p>
+  <a href="#reservation" class="hero-btn">RESERVE A TABLE</a>
+</div>
+
+<!-- ABOUT -->
+<div class="about" id="about">
+  <h2>Our Story</h2>
+  <div class="divider"></div>
+  <p>Welcome to Habesha Kitchen — where every meal tells a story. We bring the rich, bold flavors of Ethiopia to your table using traditional recipes passed down through generations. From our famous Injera to our slow-cooked Doro Wat, every dish is made with love and the finest ingredients.</p>
+</div>
+
+<!-- MENU -->
+<div class="menu" id="menu">
+  <h2>Our Signature Dishes</h2>
+  <div class="divider" style="margin:10px auto 0;"></div>
+  <div class="menu-grid">
+    <div class="menu-card">
+      <img src="https://images.unsplash.com/photo-1567529692333-de9fd6772897?w=400" alt="Doro Wat"/>
+      <div class="menu-info">
+        <h3>Doro Wat</h3>
+        <p>Slow-cooked chicken in rich berbere spice sauce served with traditional injera bread.</p>
+        <div class="price">$12.99</div>
+      </div>
+    </div>
+    <div class="menu-card">
+      <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400" alt="Tibs"/>
+      <div class="menu-info">
+        <h3>Tibs</h3>
+        <p>Sautéed tender beef with onions, tomatoes and Ethiopian spices. A true classic.</p>
+        <div class="price">$14.99</div>
+      </div>
+    </div>
+    <div class="menu-card">
+      <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400" alt="Vegetarian Platter"/>
+      <div class="menu-info">
+        <h3>Vegetarian Platter</h3>
+        <p>A colorful spread of lentils, chickpeas, and seasonal vegetables on fresh injera.</p>
+        <div class="price">$10.99</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<div class="features">
+  <h2>Why Choose Us</h2>
+  <div class="features-grid">
+    <div class="feature-item">
+      <div class="icon">🌿</div>
+      <h3>Fresh Ingredients</h3>
+      <p>We use only the freshest locally sourced ingredients in every dish we prepare.</p>
+    </div>
+    <div class="feature-item">
+      <div class="icon">👨‍🍳</div>
+      <h3>Expert Chefs</h3>
+      <p>Our chefs bring decades of experience cooking authentic Ethiopian cuisine.</p>
+    </div>
+    <div class="feature-item">
+      <div class="icon">🏡</div>
+      <h3>Cozy Atmosphere</h3>
+      <p>Enjoy a warm and welcoming environment perfect for family and friends.</p>
+    </div>
+    <div class="feature-item">
+      <div class="icon">🚚</div>
+      <h3>Fast Delivery</h3>
+      <p>Order online and get your favorite Ethiopian meals delivered to your door.</p>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<div class="testimonials">
+  <h2>What Customers Say</h2>
+  <div class="testimonial-grid">
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>The best Ethiopian food I have ever tasted! The Doro Wat was absolutely incredible. I will definitely come back again and again!</p>
+      <h4>— Sarah M., Addis Ababa</h4>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>Amazing atmosphere and even better food. The vegetarian platter was fresh and delicious. Highly recommend Habesha Kitchen!</p>
+      <h4>— Daniel K., Mekelle</h4>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>Authentic flavors that remind me of home. The service was excellent and the portions were generous. A true gem!</p>
+      <h4>— Tigist A., Addis Ababa</h4>
+    </div>
+  </div>
+</div>
+
+<!-- RESERVATION -->
+<div class="reservation" id="reservation">
+  <h2>Reserve A Table</h2>
+  <p>Book your table today and enjoy an unforgettable dining experience</p>
+  <div class="form-group" style="margin-bottom:15px;">
+    <input type="text" placeholder="Your Full Name" />
+  </div>
+  <div class="form-group" style="margin-bottom:15px;">
+    <input type="tel" placeholder="Phone Number" />
+  </div>
+  <div class="form-group" style="margin-bottom:15px;">
+    <input type="date" />
+  </div>
+  <div class="form-group" style="margin-bottom:15px;">
+    <input type="number" placeholder="Number of Guests" />
+  </div>
+  <button class="submit-btn">BOOK NOW</button>
+</div>
+
+<!-- CONTACT -->
+<div class="contact" id="contact">
+  <h2>Find Us</h2>
+  <div class="contact-grid">
+    <div class="contact-item">
+      <div class="icon">📍</div>
+      <h3>ADDRESS</h3>
+      <p>Bole Road, Addis Ababa<br/>Ethiopia</p>
+    </div>
+    <div class="contact-item">
+      <div class="icon">📞</div>
+      <h3>PHONE</h3>
+      <p>+251 911 234 567</p>
+    </div>
+    <div class="contact-item">
+      <div class="icon">🕐</div>
+      <h3>HOURS</h3>
+      <p>Mon–Sun<br/>8:00 AM – 10:00 PM</p>
+    </div>
+    <div class="contact-item">
+      <div class="icon">📧</div>
+      <h3>EMAIL</h3>
+      <p>info@habeshakitchen.com</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 <span>Habesha Kitchen</span> | Designed by <span>Filimon Tesfay Abreha</span> | All Rights Reserved</p>
+</footer>
+
+</body>
+</html>
